@@ -283,25 +283,54 @@ public class Board {
     
     
      public static void main(String[] args) {
+        System.out.println("Please choose a play mode: \n 1. Human vs Human \n 2. Human vs AI");
+        System.out.println("Enter a mode: ");
+        Scanner mode = new Scanner(System.in);
+	int ansMode = mode.nextInt();
+        if(ansMode == 2){
         initializeBoard();
-		while(true) {
-                        System.out.println("Please enter a move 1 - 7");
-			Scanner input = new Scanner(System.in);
-	        
-			int new_column = input.nextInt();
-	        updateBoard(new_column - 1, piecePLAYER);
-	        System.out.println(Arrays.deepToString(board).replace("], ", "]\n").replace("[[", "[").replace("]]", "]"));
-	        if(isTerminal(board))
-	        	 break;
-	       
-	        System.out.println();
-	        
-	        new_column = getAIMove();
+        while(true) {
+                System.out.println("Please enter a move 1 - 7");
+                Scanner input = new Scanner(System.in);
+
+                int new_column = input.nextInt();
+                updateBoard(new_column - 1, piecePLAYER);
+                System.out.println(Arrays.deepToString(board).replace("], ", "]\n").replace("[[", "[").replace("]]", "]"));
+                if(isTerminal(board))
+                         break;
+
+                System.out.println();
+
+                new_column = getAIMove();
 //	        updateBoard(new_column, pieceCOMPUTER);
-	        System.out.println(Arrays.deepToString(board).replace("], ", "]\n").replace("[[", "[").replace("]]", "]"));
-	        if(isTerminal(board))
-	        	break;
-		}
-		 System.out.println("Game Over !");
+                System.out.println(Arrays.deepToString(board).replace("], ", "]\n").replace("[[", "[").replace("]]", "]"));
+                if(isTerminal(board))
+                        break;
+                }
+                 System.out.println("Game Over !");
+        }else if(ansMode == 1)
+        {
+            initializeBoard();
+        while(true) {
+            System.out.println("Player 2 enters a move 1 - 7");
+                Scanner input = new Scanner(System.in);
+
+                int new_column = input.nextInt();
+                updateBoard(new_column - 1, piecePLAYER);
+                System.out.println(Arrays.deepToString(board).replace("], ", "]\n").replace("[[", "[").replace("]]", "]"));
+                if(isTerminal(board))
+                         break;
+
+                System.out.println();
+                System.out.println("Player 1 enters a move 1 - 7");
+                int new_column2 = input.nextInt();
+                updateBoard(new_column2 - 1, pieceCOMPUTER);
+//	        updateBoard(new_column, pieceCOMPUTER);
+                System.out.println(Arrays.deepToString(board).replace("], ", "]\n").replace("[[", "[").replace("]]", "]"));
+                if(isTerminal(board))
+                        break;
+                }
+                 System.out.println("Game Over !");
+        }
     }
 }
